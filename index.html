@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Renataa | Siswi Kelas 10 TKJ - Tangled Universe</title>
+  
+  <!-- Google Fonts: Cinzel (Fairytale Kingdom) + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            royal: ['"Cinzel"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            tangled: {
+              gold: {
+                50: '#FFFDF0',
+                100: '#FFF8D6',
+                200: '#FFEEA8',
+                300: '#FEDF68',
+                400: '#F5C438',
+                500: '#E6A519',
+                600: '#C7850C',
+                700: '#9E6107',
+              },
+              purple: {
+                50: '#FAF5FF',
+                100: '#F3E8FF',
+                200: '#E9D5FF',
+                300: '#D8B4FE',
+                400: '#BC7BE4',
+                500: '#9648B8',
+                600: '#7B2E9F',
+                700: '#5E1B7F',
+                800: '#461060',
+                900: '#2F0842',
+                950: '#1D052B',
+              },
+              night: {
+                800: '#231238',
+                900: '#180B28',
+                950: '#0F061C',
+              },
+              lantern: '#FF9E2C',
+              pascal: '#3E9651',
+              flynn: '#2A7B88',
+              maximus: '#E5D4B3',
+            }
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'hair-shimmer': 'hairShimmer 5s ease-in-out infinite alternate',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Ambient Tangled Magic Glow */
+    .bg-tangled-glow {
+      background: 
+        radial-gradient(circle at 15% 15%, rgba(245, 196, 56, 0.18), transparent 42%),
+        radial-gradient(circle at 85% 20%, rgba(150, 72, 184, 0.18), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(245, 196, 56, 0.14), transparent 46%),
+        radial-gradient(circle at 80% 75%, rgba(228, 114, 151, 0.12), transparent 40%);
+    }
+
+    /* Fairytale Kingdom Glass Card */
+    .glass-card {
+      background: rgba(255, 253, 247, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(245, 196, 56, 0.45);
+      box-shadow: 0 10px 30px -5px rgba(70, 16, 96, 0.08), 0 0 15px 0 rgba(245, 196, 56, 0.12);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(245, 196, 56, 0.85);
+      box-shadow: 0 16px 36px -5px rgba(70, 16, 96, 0.14), 0 0 25px 2px rgba(245, 196, 56, 0.22);
+    }
+
+    /* Tangled Floating Sky Lanterns ("At Last I See the Light") */
+    .lantern-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floating-lantern {
+      position: absolute;
+      width: 26px;
+      height: 36px;
+      background: linear-gradient(180deg, #FFE896 0%, #FF9E2C 65%, #E65C00 100%);
+      border-radius: 7px 7px 11px 11px;
+      box-shadow: 0 0 20px 7px rgba(255, 174, 51, 0.58), 0 0 40px 14px rgba(255, 130, 20, 0.3);
+      opacity: 0;
+      animation: floatUp 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .floating-lantern::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 3px;
+      right: 3px;
+      height: 3px;
+      background: #D97706;
+      border-radius: 2px;
+    }
+
+    .floating-lantern::after {
+      content: '☀️';
+      font-size: 11px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.8;
+      filter: drop-shadow(0 0 2px #FFF);
+    }
+
+    /* Individual Lantern Positions & Delays */
+    .floating-lantern:nth-child(1) { left: 7%; animation-duration: 18s; animation-delay: 0s; transform: scale(0.75); }
+    .floating-lantern:nth-child(2) { left: 22%; animation-duration: 21s; animation-delay: 4s; transform: scale(0.9); }
+    .floating-lantern:nth-child(3) { left: 42%; animation-duration: 17s; animation-delay: 7s; transform: scale(0.65); }
+    .floating-lantern:nth-child(4) { left: 66%; animation-duration: 20s; animation-delay: 2s; transform: scale(0.85); }
+    .floating-lantern:nth-child(5) { left: 86%; animation-duration: 19s; animation-delay: 6s; transform: scale(0.7); }
+    .floating-lantern:nth-child(6) { left: 34%; animation-duration: 23s; animation-delay: 11s; transform: scale(1); }
+    .floating-lantern:nth-child(7) { left: 54%; animation-duration: 16s; animation-delay: 9s; transform: scale(0.8); }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -50px;
+        opacity: 0;
+        transform: translateY(0) translateX(0) scale(0.7) rotate(-3deg);
+      }
+      10% {
+        opacity: 0.85;
+      }
+      50% {
+        transform: translateY(-50vh) translateX(25px) scale(0.85) rotate(4deg);
+      }
+      85% {
+        opacity: 0.85;
+      }
+      100% {
+        bottom: 105vh;
+        opacity: 0;
+        transform: translateY(-110vh) translateX(-20px) scale(0.95) rotate(-3deg);
+      }
+    }
+
+    /* Custom scrollbar with Corona Royal Theme */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF5FF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #FEDF68 0%, #BC7BE4 100%);
+      border-radius: 5px;
+      border: 2px solid #FAF5FF;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7B2E9F;
+    }
+  </style>
+</head>
+<body class="bg-[#FCF9F3] text-slate-800 antialiased font-sans selection:bg-[#E6A519] selection:text-tangled-purple-950 transition-colors duration-300 relative">
+
+  <!-- SVG Symbols: Tangled Icons -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!-- Corona Royal Sun Crest -->
+    <symbol id="corona-sun-crest" viewBox="0 0 100 100">
+      <polygon points="50,2 53,24 47,24" />
+      <polygon points="50,98 53,76 47,76" />
+      <polygon points="2,50 24,53 24,47" />
+      <polygon points="98,50 76,53 76,47" />
+      <polygon points="16,16 34,31 30,35" />
+      <polygon points="84,84 66,69 70,65" />
+      <polygon points="84,16 69,34 65,30" />
+      <polygon points="16,84 31,66 35,70" />
+      <polygon points="50,14 52,26 48,26" />
+      <polygon points="50,86 52,74 48,74" />
+      <polygon points="14,50 26,52 26,48" />
+      <polygon points="86,50 74,52 74,48" />
+      <polygon points="25,25 35,33 33,35" />
+      <polygon points="75,75 65,67 67,65" />
+      <polygon points="75,25 67,35 65,33" />
+      <polygon points="25,75 33,65 35,67" />
+      <circle cx="50" cy="50" r="17" />
+      <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+    </symbol>
+
+    <!-- Tangled Frying Pan (Senjata Utama Rapunzel) -->
+    <symbol id="frying-pan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="10" cy="12" r="7" />
+      <path d="M17 12h5" />
+      <path d="M21 10v4" />
+      <circle cx="10" cy="12" r="4" fill="currentColor" fill-opacity="0.15" />
+    </symbol>
+  </svg>
+
+  <!-- Glowing Tangled Ambiance -->
+  <div class="fixed inset-0 bg-tangled-glow pointer-events-none -z-10"></div>
+
+  <!-- Tangled Sky Lanterns Floating in Background -->
+  <div class="lantern-container">
+    <div class="floating-lantern"></div>
+    <div class="floating-lantern"></div>
+    <div class="floating-lantern"></div>
+    <div class="floating-lantern"></div>
+    <div class="floating-lantern"></div>
+    <div class="floating-lantern"></div>
+    <div class="floating-lantern"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo with Corona Sun & Rapunzel Badge -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="relative w-11 h-11 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-tangled-purple-700 via-tangled-gold-400 to-tangled-purple-500 shadow-md shadow-amber-500/25 group-hover:scale-105 transition-all duration-300">
+            <img src="profile.jpg" alt="Renataa" class="w-full h-full rounded-[14px] object-cover object-[center_30%]">
+            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-amber-300/60 pointer-events-none"></div>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5">
+              <span class="font-royal font-bold text-lg tracking-wide text-tangled-purple-800 group-hover:text-tangled-gold-600 transition-colors">
+                renataa.tkj
+              </span>
+              <svg class="w-4 h-4 text-tangled-gold-500 fill-current animate-pulse-slow"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <span class="text-[11px] font-semibold text-tangled-purple-600/80 tracking-wider uppercase -mt-0.5">SMK Telkom Malang • Kelas 10</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation with Tangled Styling -->
+        <nav class="hidden md:flex items-center gap-1 bg-[#FFFDF7]/90 backdrop-blur-md px-4 py-2 rounded-full border border-tangled-gold-300/70 shadow-sm shadow-purple-950/5">
+          <a href="#tentang" class="px-4 py-1.5 text-sm font-semibold text-slate-700 hover:text-tangled-purple-700 hover:bg-tangled-purple-50 rounded-full transition-all">Tentang</a>
+          <a href="#karakter" class="px-4 py-1.5 text-sm font-semibold text-slate-700 hover:text-tangled-purple-700 hover:bg-tangled-purple-50 rounded-full transition-all flex items-center gap-1">
+            <span>✨</span> Karakter Tangled
+          </a>
+          <a href="#keahlian" class="px-4 py-1.5 text-sm font-semibold text-slate-700 hover:text-tangled-purple-700 hover:bg-tangled-purple-50 rounded-full transition-all">Keahlian Lab</a>
+          <a href="#projek" class="px-4 py-1.5 text-sm font-semibold text-tangled-purple-800 bg-tangled-gold-100/70 hover:bg-tangled-gold-200/80 rounded-full transition-all flex items-center gap-1.5 font-bold">
+            <svg class="w-3.5 h-3.5 text-tangled-gold-600 fill-current"><use href="#corona-sun-crest"/></svg>
+            Projek Praktik
+          </a>
+          <a href="#terminal" class="px-4 py-1.5 text-sm font-semibold text-slate-700 hover:text-tangled-purple-700 hover:bg-tangled-purple-50 rounded-full transition-all">TKJ Lab</a>
+          <a href="#kontak" class="px-4 py-1.5 text-sm font-semibold text-slate-700 hover:text-tangled-purple-700 hover:bg-tangled-purple-50 rounded-full transition-all">Kontak</a>
+        </nav>
+
+        <!-- CTA & Mobile Menu Toggle -->
+        <div class="flex items-center gap-3">
+          <a href="https://instagram.com/r4en.ata" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm text-tangled-purple-950 bg-gradient-to-r from-tangled-gold-300 via-tangled-gold-400 to-tangled-gold-500 hover:from-tangled-gold-400 hover:to-tangled-gold-600 shadow-md shadow-amber-400/30 hover:-translate-y-0.5 border border-amber-200 transition-all">
+            <i data-lucide="instagram" class="w-4 h-4 text-tangled-purple-900"></i>
+            <span>DM Instagram</span>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden p-2 rounded-xl bg-[#FFFDF7] border border-tangled-gold-300 text-slate-700 hover:bg-tangled-purple-50 transition-colors">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6 text-tangled-purple-700"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#FFFDF7]/98 backdrop-blur-xl border-b border-tangled-gold-300 px-6 py-6 shadow-xl space-y-3">
+      <a href="#tentang" class="mobile-nav-link block font-semibold text-slate-700 py-2 border-b border-tangled-purple-100 hover:text-tangled-purple-700">Tentang Saya</a>
+      <a href="#karakter" class="mobile-nav-link block font-semibold text-slate-700 py-2 border-b border-tangled-purple-100 hover:text-tangled-purple-700">Karakter Tangled & Lab</a>
+      <a href="#keahlian" class="mobile-nav-link block font-semibold text-slate-700 py-2 border-b border-tangled-purple-100 hover:text-tangled-purple-700">Keahlian Lab</a>
+      <a href="#projek" class="mobile-nav-link block font-bold text-tangled-purple-800 py-2 border-b border-tangled-purple-100 hover:text-tangled-gold-600 flex items-center justify-between">
+        <span>Projek Praktik</span>
+        <svg class="w-4 h-4 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+      </a>
+      <a href="#terminal" class="mobile-nav-link block font-semibold text-slate-700 py-2 border-b border-tangled-purple-100 hover:text-tangled-purple-700">TKJ Lab Simulator</a>
+      <a href="#kontak" class="mobile-nav-link block font-semibold text-slate-700 py-2 hover:text-tangled-purple-700">Kontak</a>
+      <a href="https://instagram.com/r4en.ata" target="_blank" class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-tangled-purple-950 bg-gradient-to-r from-tangled-gold-300 to-tangled-gold-500 mt-4 shadow-md shadow-amber-400/30">
+        <i data-lucide="instagram" class="w-4 h-4 text-tangled-purple-900"></i>
+        <span>DM Instagram</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Tangled Character Badges Banner -->
+      <div class="mb-6 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-tangled-purple-100 via-amber-50 to-tangled-purple-100 border border-tangled-gold-300 text-tangled-purple-900 font-bold text-xs shadow-sm">
+          <svg class="w-4 h-4 text-tangled-gold-500 fill-current animate-spin" style="animation-duration: 12s;"><use href="#corona-sun-crest"/></svg>
+          <span>✨ Edisi Tangled Universe • Kelas 10 SMK Telkom Malang</span>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs font-semibold border border-purple-200">
+          <span>👑 Rapunzel</span>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-100 text-cyan-900 text-xs font-semibold border border-cyan-200">
+          <span>💼 Flynn Rider</span>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold border border-emerald-200">
+          <span>🦎 Pascal</span>
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold border border-amber-200">
+          <span>🐴 Maximus</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column: Copywriting (Santai & Bersahabat) -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Headline Santai & Menginspirasi (Tangled Vibe) -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Hai, aku <span class="font-royal text-transparent bg-clip-text bg-gradient-to-r from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-600">Renataa</span>! Anak TKJ yang siap bersinar dan ngejar mimpi di dunia teknologi ✨
+          </h1>
+
+          <!-- Subheadline: Santai, Hangat, & Menjelaskan Realitas Kelas 10 TKJ -->
+          <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            Aku siswi kelas 10 <strong>Teknik Komputer dan Jaringan (TKJ)</strong> di <strong>SMK Telkom Malang</strong>. Sama kayak Rapunzel yang berani keluar dari menara buat ngejar mimpinya, aku juga lagi seru-serunya belajar dari nol: mulai dari ngertiin bahasa <strong>biner (0 & 1)</strong>, asyiknya tangan belepotan pas <strong>crimping kabel LAN</strong>, sampai serunya ngitung pembagian IP lewat <strong>subnetting</strong>!
+          </p>
+
+          <!-- Buttons & Action -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#projek" class="px-6 py-3.5 rounded-2xl font-bold text-tangled-purple-950 bg-gradient-to-r from-tangled-gold-300 via-tangled-gold-400 to-tangled-gold-500 hover:from-tangled-gold-400 hover:to-tangled-gold-600 shadow-lg shadow-amber-400/30 hover:-translate-y-1 transition-all flex items-center gap-2 border border-amber-200">
+              <svg class="w-5 h-5 fill-current text-tangled-purple-900"><use href="#corona-sun-crest"/></svg>
+              <span>Yuk Intip Projekku!</span>
+            </a>
+            <a href="#terminal" class="px-6 py-3.5 rounded-2xl font-bold text-tangled-purple-900 bg-white border border-tangled-purple-200 hover:border-tangled-purple-500 hover:bg-tangled-purple-50 shadow-sm hover:-translate-y-1 transition-all flex items-center gap-2">
+              <i data-lucide="terminal" class="w-5 h-5 text-tangled-purple-600"></i>
+              <span>Coba Terminal Lab TKJ</span>
+            </a>
+          </div>
+
+          <!-- Quick Highlights: Biner, Crimping, Subnetting -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-6 border-t border-tangled-gold-200 max-w-lg mx-auto lg:mx-0 text-center sm:text-left">
+            <div class="p-2.5 rounded-xl bg-gradient-to-b from-[#FFFDF7] to-tangled-purple-50 border border-tangled-gold-300/80 shadow-sm">
+              <div class="flex items-center gap-1.5 justify-center sm:justify-start mb-0.5">
+                <span class="text-xs">🔢</span>
+                <p class="text-sm font-black text-tangled-purple-800">Biner</p>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-500">Ngertiin Logika 0 & 1</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-gradient-to-b from-[#FFFDF7] to-tangled-purple-50 border border-tangled-gold-300/80 shadow-sm">
+              <div class="flex items-center gap-1.5 justify-center sm:justify-start mb-0.5">
+                <span class="text-xs">🔌</span>
+                <p class="text-sm font-black text-tangled-purple-800">Crimping</p>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-500">Kabel Straight & Cross</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-gradient-to-b from-[#FFFDF7] to-tangled-purple-50 border border-tangled-gold-300/80 shadow-sm">
+              <div class="flex items-center gap-1.5 justify-center sm:justify-start mb-0.5">
+                <span class="text-xs">🌐</span>
+                <p class="text-sm font-black text-tangled-purple-800">Subnetting</p>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-500">Bagi IP Biar Gak Boros</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-gradient-to-b from-[#FFFDF7] to-tangled-purple-50 border border-tangled-gold-300/80 shadow-sm">
+              <div class="flex items-center gap-1.5 justify-center sm:justify-start mb-0.5">
+                <span class="text-xs">🍳</span>
+                <p class="text-sm font-black text-tangled-purple-800">Lab Squad</p>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-500">Pascal & Maximus Ready!</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Royal Tangled & Rapunzel Card -->
+        <div class="lg:col-span-5 relative">
+          <!-- Floating Glows -->
+          <div class="absolute -top-10 -right-10 w-72 h-72 bg-tangled-gold-300 rounded-full blur-3xl opacity-30 -z-10 animate-pulse-slow"></div>
+          <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-tangled-purple-500 rounded-full blur-3xl opacity-25 -z-10"></div>
+
+          <!-- Main Interactive Profile Card (Tangled Corona Edition) -->
+          <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border-2 border-tangled-gold-300/80">
+            
+            <!-- Corner Golden Sun Decor -->
+            <div class="absolute -top-6 -right-6 w-24 h-24 text-tangled-gold-300/30 pointer-events-none fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+
+            <!-- Top badge status -->
+            <div class="flex items-center justify-between pb-5 border-b border-tangled-gold-200">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-tangled-purple-300"></span>
+                <span class="w-3 h-3 rounded-full bg-tangled-gold-400"></span>
+                <span class="w-3 h-3 rounded-full bg-tangled-purple-700"></span>
+              </div>
+              <span class="text-xs font-mono font-bold px-3 py-1 rounded-md bg-tangled-purple-100 text-tangled-purple-900 border border-tangled-gold-300 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                LAN TESTER : 8 PIN ALL ON!
+              </span>
+            </div>
+
+            <!-- Avatar & Tangled Halo -->
+            <div class="pt-5 text-center">
+              <div class="relative inline-block">
+                <!-- Golden Braid Halo -->
+                <div class="w-36 h-36 mx-auto rounded-3xl p-1 bg-gradient-to-tr from-tangled-purple-700 via-tangled-gold-400 to-tangled-purple-500 shadow-xl shadow-purple-900/20">
+                  <div class="w-full h-full bg-slate-900 rounded-[22px] overflow-hidden relative">
+                    <img src="profile.jpg" alt="Foto Profil Renataa" class="w-full h-full object-cover object-[center_30%] hover:scale-105 transition-transform duration-300">
+                  </div>
+                </div>
+                <!-- Pascal Badge -->
+                <span class="absolute -top-2 -left-2 bg-emerald-600 text-white text-[11px] px-2 py-0.5 rounded-full border-2 border-white shadow-md font-bold flex items-center gap-1">
+                  🦎 Pascal
+                </span>
+                <!-- Frying Pan Badge -->
+                <span class="absolute bottom-1 right-1 bg-gradient-to-r from-tangled-gold-400 to-tangled-gold-500 text-tangled-purple-950 p-1.5 rounded-xl border-2 border-white shadow-md font-bold" title="Frying Pan siap beraksi!">
+                  <svg class="w-4 h-4"><use href="#frying-pan"/></svg>
+                </span>
+              </div>
+
+              <div class="flex items-center justify-center gap-2 mt-4">
+                <h3 class="font-royal font-bold text-2xl text-slate-800">Renataa</h3>
+                <svg class="w-5 h-5 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+              </div>
+              <p class="text-sm font-semibold text-tangled-purple-700">SMK Telkom Malang • Siswa Kelas 10 TKJ</p>
+            </div>
+
+            <!-- Mini Spec Card List -->
+            <div class="mt-5 space-y-2.5">
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-white/95 border border-tangled-gold-200 shadow-sm text-xs sm:text-sm">
+                <div class="flex items-center gap-2 text-slate-700">
+                  <span class="text-base">🔢</span>
+                  <span class="font-medium">Sistem Biner</span>
+                </div>
+                <span class="font-bold text-tangled-purple-900">Konversi Desimal, Bit & Byte</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-white/95 border border-tangled-gold-200 shadow-sm text-xs sm:text-sm">
+                <div class="flex items-center gap-2 text-slate-700">
+                  <span class="text-base">🔌</span>
+                  <span class="font-medium">Crimping UTP</span>
+                </div>
+                <span class="font-bold text-tangled-purple-900">Standar T568A & T568B RJ-45</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-white/95 border border-tangled-gold-200 shadow-sm text-xs sm:text-sm">
+                <div class="flex items-center gap-2 text-slate-700">
+                  <span class="text-base">🌐</span>
+                  <span class="font-medium">Subnetting IPv4</span>
+                </div>
+                <span class="font-bold text-tangled-purple-900">Netmask, Host & Network ID</span>
+              </div>
+            </div>
+
+            <!-- Tangled Quote -->
+            <div class="mt-5 p-3 rounded-2xl bg-gradient-to-r from-tangled-purple-50 via-amber-50 to-tangled-purple-50 border border-tangled-gold-300 text-center relative">
+              <p class="text-xs font-semibold text-tangled-purple-900 italic">"Gleam and glow, let your power shine — dari biner 0 dan 1 sampai koneksi lancar jaya!" ☀️</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL SECTION: KARAKTER TANGLED & PERANNYA DI LAB TKJ -->
+  <section id="karakter" class="py-20 bg-gradient-to-b from-[#FFFDF7] to-tangled-purple-50/60 border-y border-tangled-gold-200 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-tangled-purple-800 bg-tangled-purple-100 px-4 py-1.5 rounded-full border border-tangled-gold-300 inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-tangled-gold-600 fill-current"><use href="#corona-sun-crest"/></svg>
+          Squad Film Tangled
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight font-royal">
+          Karakter Tangled & Semangat Belajar TKJ
+        </h2>
+        <p class="text-slate-600 mt-3 text-base">
+          Masing-masing karakter di Tangled punya sifat unik yang menginspirasi caraku belajar jaringan komputer di kelas 10!
+        </p>
+      </div>
+
+      <!-- Character Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Character 1: Rapunzel -->
+        <div class="p-6 rounded-3xl bg-white/95 border-2 border-tangled-gold-300 hover:border-tangled-gold-500 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-amber-400 text-white flex items-center justify-center text-2xl shadow-md shadow-amber-400/30 group-hover:scale-110 transition-transform">
+              👑
+            </div>
+            <div>
+              <h3 class="font-royal font-bold text-xl text-slate-900 group-hover:text-tangled-purple-700">Rapunzel</h3>
+              <p class="text-xs font-semibold text-tangled-gold-600">The Curious Dreamer ☀️</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-3">
+            Punya rasa penasaran yang luar biasa buat keluar dari zona nyaman. Menginspirasiku buat gak takut salah potong kabel pas pertama kali belajar crimping dan tekun ngitung biner!
+          </p>
+          <div class="p-2 rounded-xl bg-purple-50 border border-purple-200 text-[11px] text-purple-900 italic font-medium">
+            "I've got a dream! Belajar hal baru itu seru banget."
+          </div>
+        </div>
+
+        <!-- Character 2: Flynn Rider / Eugene -->
+        <div class="p-6 rounded-3xl bg-white/95 border-2 border-cyan-300 hover:border-cyan-500 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-600 to-teal-400 text-white flex items-center justify-center text-2xl shadow-md shadow-cyan-400/30 group-hover:scale-110 transition-transform">
+              💼
+            </div>
+            <div>
+              <h3 class="font-royal font-bold text-xl text-slate-900 group-hover:text-cyan-700">Flynn Rider (Eugene)</h3>
+              <p class="text-xs font-semibold text-cyan-600">Master of Escape Routes 🗡️</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-3">
+            Ahli navigasi yang selalu tahu rute tercepat dan cerdik menghindari jalan buntu. Cocok banget sama konsep <em>subnetting</em>: mencari jalur alamat IP yang paling efisien!
+          </p>
+          <div class="p-2 rounded-xl bg-cyan-50 border border-cyan-200 text-[11px] text-cyan-900 italic font-medium">
+            "Pasang 'The Smolder', rute paket data dijamin lancar tanpa hambatan!"
+          </div>
+        </div>
+
+        <!-- Character 3: Pascal -->
+        <div class="p-6 rounded-3xl bg-white/95 border-2 border-emerald-300 hover:border-emerald-500 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 to-lime-400 text-white flex items-center justify-center text-2xl shadow-md shadow-emerald-400/30 group-hover:scale-110 transition-transform">
+              🦎
+            </div>
+            <div>
+              <h3 class="font-royal font-bold text-xl text-slate-900 group-hover:text-emerald-700">Pascal</h3>
+              <p class="text-xs font-semibold text-emerald-600">The QC Inspector 🔍</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-3">
+            Bunglon setia yang teliti dan selalu mengamati detail kecil. Di lab TKJ, Pascal jadi maskot pemeriksa kabel: warna kulitnya berubah hijau saat semua pin tester menyala berurutan!
+          </p>
+          <div class="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-900 italic font-medium">
+            "Ssst! Teliti cek urutan warna T568B sebelum ditekan tang crimping!"
+          </div>
+        </div>
+
+        <!-- Character 4: Maximus -->
+        <div class="p-6 rounded-3xl bg-white/95 border-2 border-amber-300 hover:border-amber-500 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-600 to-yellow-400 text-white flex items-center justify-center text-2xl shadow-md shadow-amber-400/30 group-hover:scale-110 transition-transform">
+              🐴
+            </div>
+            <div>
+              <h3 class="font-royal font-bold text-xl text-slate-900 group-hover:text-amber-700">Maximus</h3>
+              <p class="text-xs font-semibold text-amber-600">The Protocol Enforcer 🛡️</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-3">
+            Kuda istana yang super disiplin, tegas, dan anti-aturan longgar. Mengingatkanku bahwa kabel LAN gak boleh sembarangan dipilin: harus lurus, rata, dan patuh standar T568B!
+          </p>
+          <div class="p-2 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900 italic font-medium">
+            "*Mendengus tegas*: Kabel harus rapi, gak boleh ada pin yang ketuker!"
+          </div>
+        </div>
+
+        <!-- Character 5: Mother Gothel -->
+        <div class="p-6 rounded-3xl bg-white/95 border-2 border-rose-300 hover:border-rose-500 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-700 to-red-500 text-white flex items-center justify-center text-2xl shadow-md shadow-rose-400/30 group-hover:scale-110 transition-transform">
+              🥀
+            </div>
+            <div>
+              <h3 class="font-royal font-bold text-xl text-slate-900 group-hover:text-rose-700">Mother Gothel</h3>
+              <p class="text-xs font-semibold text-rose-600">The Overprotective Firewall 🚫</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-3">
+            Selalu melarang keluar dan bilang <em>"Mother knows best"</em>. Di dunia TKJ, Gothel ibarat aturan firewall ketat atau kabel putus yang memblokir koneksi — harus kita pecahkan masalahnya!
+          </p>
+          <div class="p-2 rounded-xl bg-rose-50 border border-rose-200 text-[11px] text-rose-900 italic font-medium">
+            "Koneksi RTO? Cari tahu kenapa packet data-nya gak sampai!"
+          </div>
+        </div>
+
+        <!-- Character 6: Snuggly Duckling Ruffians -->
+        <div class="p-6 rounded-3xl bg-white/95 border-2 border-purple-300 hover:border-purple-500 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all group">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-700 to-pink-500 text-white flex items-center justify-center text-2xl shadow-md shadow-purple-400/30 group-hover:scale-110 transition-transform">
+              🧁
+            </div>
+            <div>
+              <h3 class="font-royal font-bold text-xl text-slate-900 group-hover:text-purple-700">The Snuggly Duckling Crew</h3>
+              <p class="text-xs font-semibold text-purple-600">Hook Hand, Shorty & Friends 🎹</p>
+            </div>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-3">
+            Kelihatannya garang dan serem, tapi aslinya berhati lembut dan punya mimpi masing-masing! Mirip suasana bengkel lab TKJ: kelihatan sibuk dengan tang dan obeng, tapi kompak saling bantu.
+          </p>
+          <div class="p-2 rounded-xl bg-purple-50 border border-purple-200 text-[11px] text-purple-900 italic font-medium">
+            "Semua orang punya mimpi, dan mimpi kami: praktikum lancar dapat nilai 95!"
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TENTANG SAYA SECTION -->
+  <section id="tentang" class="py-20 bg-white/80 border-y border-tangled-gold-200 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-tangled-purple-800 bg-tangled-purple-100 px-4 py-1.5 rounded-full border border-tangled-gold-300 inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-tangled-gold-600 fill-current"><use href="#corona-sun-crest"/></svg>
+          Cerita Singkat
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight font-royal">
+          Mulai dari Nol, Berani Mencoba!
+        </h2>
+        <p class="text-slate-600 mt-3 text-base">
+          Sebagai siswi kelas 10 di SMK Telkom Malang, aku lagi menikmati proses memahami dasar-dasar jaringan komputer: dari logika biner, crimping kabel, sampai ngitung subnetting.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="p-8 rounded-3xl bg-white border border-tangled-gold-200 hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/10 hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-tangled-purple-700 to-tangled-purple-500 text-white flex items-center justify-center mb-6 shadow-md shadow-purple-900/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="graduation-cap" class="w-7 h-7 text-tangled-gold-300"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800 mb-2">Anak Kelas 10 TKJ</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">
+            Sekolah di <strong>SMK Telkom Malang</strong> jurusan <strong>Teknik Komputer dan Jaringan (TKJ)</strong>. Senang banget waktu jadwal praktikum bengkel lab kabel dan ngerakit komponen komputer.
+          </p>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-tangled-purple-800 bg-tangled-purple-50 px-3 py-1 rounded-full border border-tangled-gold-300">
+            <span>Fokus: Dasar Jaringan & Perkabelan</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-8 rounded-3xl bg-white border border-tangled-gold-200 hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/10 hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-tangled-gold-500 to-tangled-gold-400 text-tangled-purple-950 flex items-center justify-center mb-6 shadow-md shadow-amber-400/25 group-hover:scale-110 transition-transform">
+            <i data-lucide="sparkles" class="w-7 h-7 text-tangled-purple-900"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800 mb-2">Materi yang Lagi Dipelajari</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">
+            Lagi fokus menguasai 3 materi inti kelas 10: serunya ngitung <strong>sistem biner</strong>, telitinya ngerangkai pin <strong>crimping kabel UTP</strong>, dan kalkulasi pembagian host lewat <strong>subnetting IPv4</strong>.
+          </p>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-tangled-purple-800 bg-tangled-purple-50 px-3 py-1 rounded-full border border-tangled-gold-300">
+            <span>Biner • Crimping • Subnetting</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-8 rounded-3xl bg-white border border-tangled-gold-200 hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/10 hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 text-white flex items-center justify-center mb-6 shadow-md shadow-purple-900/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="target" class="w-7 h-7 text-tangled-gold-300"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800 mb-2">Punya Impian Besar!</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-4">
+            Kayak lagu <em>"I've Got a Dream"</em> di film Tangled, aku ingin terus melangkah dari dasar sampai nanti jadi teknisi jaringan yang mahir dan punya sertifikasi industri!
+          </p>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-tangled-purple-800 bg-tangled-purple-50 px-3 py-1 rounded-full border border-tangled-gold-300">
+            <span>Mimpi: Network Specialist</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KEAHLIAN / SKILLS SECTION -->
+  <section id="keahlian" class="py-20 bg-[#FAF6EE] relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-tangled-purple-800 bg-tangled-purple-100 px-4 py-1.5 rounded-full border border-tangled-gold-300 inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-tangled-gold-600 fill-current"><use href="#corona-sun-crest"/></svg>
+          Materi Pelajaran
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight font-royal">
+          Keahlian yang Sudah Ku Pelajari
+        </h2>
+        <p class="text-slate-600 mt-3 text-base">
+          Murni materi yang benar-benar diajarkan dan dipraktikkan langsung di kelas 10 TKJ SMK Telkom Malang.
+        </p>
+      </div>
+
+      <!-- Skills Grid (Biner, Crimping, Subnetting, Peralatan Lab) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Skill 1: Biner -->
+        <div class="bg-white rounded-3xl p-6 border border-tangled-gold-200 shadow-sm hover:border-tangled-gold-400 hover:shadow-md transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-tangled-purple-50 text-tangled-purple-700 flex items-center justify-center mb-5 font-bold border border-tangled-gold-300 text-xl">
+            🔢
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Sistem Bilangan Biner</h3>
+          <p class="text-xs text-slate-500 mb-4">Fondasi bahasa komputer (bit 0 & 1) dan representasi data oktet.</p>
+          
+          <ul class="space-y-2 text-xs font-semibold text-slate-700">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Konversi Desimal ke Biner (0 - 255)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Konversi Biner ke Desimal
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Tabel Bobot Bit 8-Oktet (128 s/d 1)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Penerapan Biner pada Format IPv4
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skill 2: Crimping -->
+        <div class="bg-white rounded-3xl p-6 border border-tangled-gold-200 shadow-sm hover:border-tangled-gold-400 hover:shadow-md transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-tangled-purple-50 text-tangled-purple-700 flex items-center justify-center mb-5 font-bold border border-tangled-gold-300 text-xl">
+            🔌
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Crimping Kabel UTP</h3>
+          <p class="text-xs text-slate-500 mb-4">Keahlian fisik merakit media transmisi kabel LAN berstandar industri.</p>
+          
+          <ul class="space-y-2 text-xs font-semibold text-slate-700">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Standar Urutan Warna T568A & T568B
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Kabel Straight-Through (PC ke Switch)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Kabel Cross-Over (PC ke PC Langsung)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Pengujian LAN Cable Tester (Pin 1-8)
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skill 3: Subnetting -->
+        <div class="bg-white rounded-3xl p-6 border border-tangled-gold-200 shadow-sm hover:border-tangled-gold-400 hover:shadow-md transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-tangled-purple-50 text-tangled-purple-700 flex items-center justify-center mb-5 font-bold border border-tangled-gold-300 text-xl">
+            🌐
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Subnetting IPv4</h3>
+          <p class="text-xs text-slate-500 mb-4">Kalkulasi efisiensi alamat IP dan pembagian segmen jaringan.</p>
+          
+          <ul class="space-y-2 text-xs font-semibold text-slate-700">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Perhitungan Prefix / CIDR (/24 s/d /30)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Menghitung Subnet Mask Desimal
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Menentukan Network ID & Broadcast ID
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Menghitung Rentang Host Usable
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skill 4: Peralatan Lab -->
+        <div class="bg-white rounded-3xl p-6 border border-tangled-gold-200 shadow-sm hover:border-tangled-gold-400 hover:shadow-md transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-tangled-purple-50 text-tangled-purple-700 flex items-center justify-center mb-5 font-bold border border-tangled-gold-300 text-xl">
+            🛠️
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">Peralatan Praktik Lab</h3>
+          <p class="text-xs text-slate-500 mb-4">Penguasaan alat kerja laboratorium bengkel TKJ kelas 10.</p>
+          
+          <ul class="space-y-2 text-xs font-semibold text-slate-700">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Tang Crimping RJ-45 & Stripper Kabel
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Kabel UTP Cat5e & Konektor RJ-45
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              LAN Cable Tester Indikator LED
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tangled-gold-500"></span>
+              Port RJ-45 & NIC (Network Interface Card)
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Tech Stack Badges: Tangled Night Sky Theme -->
+      <div class="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-tangled-night-950 via-tangled-purple-950 to-tangled-night-900 border border-tangled-gold-400/50 text-white shadow-xl shadow-purple-950/30 relative overflow-hidden">
+        <div class="absolute -right-8 -top-8 w-44 h-44 bg-tangled-gold-400/15 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div class="text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2">
+              <h4 class="text-lg font-bold text-white font-royal tracking-wide">Peralatan Praktikum Lab Sehari-hari</h4>
+              <svg class="w-4 h-4 text-tangled-gold-400 fill-current"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <p class="text-tangled-gold-200/80 text-xs mt-1">Alat dan perlengkapan yang paling sering ku pegang saat jam praktikum.</p>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-tangled-gold-400/20 hover:border-tangled-gold-400 text-xs font-mono font-bold tracking-wide border border-amber-300/30 text-amber-100 transition-colors">Tang Crimping RJ-45</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-tangled-gold-400/20 hover:border-tangled-gold-400 text-xs font-mono font-bold tracking-wide border border-amber-300/30 text-amber-100 transition-colors">LAN Cable Tester</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-tangled-gold-400/20 hover:border-tangled-gold-400 text-xs font-mono font-bold tracking-wide border border-amber-300/30 text-amber-100 transition-colors">Kabel UTP Cat5e</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-tangled-gold-400/20 hover:border-tangled-gold-400 text-xs font-mono font-bold tracking-wide border border-amber-300/30 text-amber-100 transition-colors">Konektor RJ-45</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-tangled-gold-400/20 hover:border-tangled-gold-400 text-xs font-mono font-bold tracking-wide border border-amber-300/30 text-amber-100 transition-colors">Tabel Subnetting IPv4</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJEK PRAKTIK SECTION (#projek) -->
+  <section id="projek" class="py-20 bg-white/90 border-y border-tangled-gold-200 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-tangled-purple-800 bg-tangled-purple-100 px-4 py-1.5 rounded-full border border-tangled-gold-300 inline-flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-tangled-gold-600 fill-current"><use href="#corona-sun-crest"/></svg>
+            Portofolio Praktikum
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight font-royal">
+            Projek & Hasil Praktik Lab
+          </h2>
+          <p class="text-slate-600 mt-2 text-sm sm:text-base">
+            Hasil nyata tugas bengkel: Kabel LAN yang berhasil di-crimping, perhitungan biner, dan alokasi subnet.
+          </p>
+        </div>
+
+        <!-- Filter Buttons: Biner, Crimping, Subnetting -->
+        <div class="flex items-center gap-2 mt-6 md:mt-0 flex-wrap" id="project-filters">
+          <button data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-tangled-gold-400 to-tangled-gold-500 text-tangled-purple-950 shadow-sm shadow-amber-400/30 border border-amber-300 transition-all">Semua</button>
+          <button data-filter="crimping" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-tangled-gold-200 hover:bg-tangled-purple-50 hover:text-tangled-purple-800 transition-all">Crimping UTP</button>
+          <button data-filter="subnetting" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-tangled-gold-200 hover:bg-tangled-purple-50 hover:text-tangled-purple-800 transition-all">Subnetting</button>
+          <button data-filter="biner" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-tangled-gold-200 hover:bg-tangled-purple-50 hover:text-tangled-purple-800 transition-all">Sistem Biner</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Project 1: Crimping Straight -->
+        <div class="project-card group rounded-3xl overflow-hidden border border-tangled-gold-200 bg-white hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/15 hover:-translate-y-2 transition-all duration-300" data-category="crimping">
+          <div class="h-48 bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute -right-4 -bottom-4 w-28 h-28 text-white/10 group-hover:text-white/20 transition-all group-hover:rotate-45 duration-700 fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <div class="text-center text-white z-10 space-y-2">
+              <i data-lucide="cable" class="w-12 h-12 mx-auto stroke-1 text-tangled-gold-300 group-hover:scale-110 transition-transform"></i>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full border border-white/20">Standar T568B Straight</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs font-bold text-tangled-purple-700 mb-2">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+                Praktik Bengkel TKJ
+              </span>
+              <span class="text-slate-400">Nilai: 95</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-tangled-purple-700 transition-colors">
+              Pembuatan Kabel LAN Straight-Through (T568B)
+            </h3>
+            <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
+              Mengupas kabel UTP Cat5e, mengurutkan 8 warna standar T568B (Putih-Orange s/d Coklat), memotong rata, crimping konektor RJ-45, dan pengujian dengan LAN Tester.
+            </p>
+            <div class="mt-4 pt-4 border-t border-tangled-gold-200/70 flex items-center justify-between text-xs">
+              <span class="font-semibold text-emerald-600 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Pin 1-8 All Green (Pascal Approved!)
+              </span>
+              <span class="font-bold text-tangled-purple-800 flex items-center gap-1 group-hover:text-tangled-gold-600">Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Crimping Cross -->
+        <div class="project-card group rounded-3xl overflow-hidden border border-tangled-gold-200 bg-white hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/15 hover:-translate-y-2 transition-all duration-300" data-category="crimping">
+          <div class="h-48 bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute -right-4 -bottom-4 w-28 h-28 text-white/10 group-hover:text-white/20 transition-all group-hover:rotate-45 duration-700 fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <div class="text-center text-white z-10 space-y-2">
+              <i data-lucide="git-compare" class="w-12 h-12 mx-auto stroke-1 text-tangled-gold-300 group-hover:scale-110 transition-transform"></i>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full border border-white/20">T568A ke T568B Cross</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs font-bold text-tangled-purple-700 mb-2">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+                Praktik Komunikasi PC
+              </span>
+              <span class="text-slate-400">Kelas 10</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-tangled-purple-700 transition-colors">
+              Pembuatan Kabel Cross-Over untuk Hubungan Antar-PC
+            </h3>
+            <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
+              Membuat kabel cross dengan menyilangkan pasangan transmit dan receive (ujung T568A dan T568B) untuk menghubungkan dua laptop langsung secara peer-to-peer tanpa switch.
+            </p>
+            <div class="mt-4 pt-4 border-t border-tangled-gold-200/70 flex items-center justify-between text-xs">
+              <span class="font-semibold text-emerald-600 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Uji Pin Cross Berhasil
+              </span>
+              <span class="font-bold text-tangled-purple-800 flex items-center gap-1 group-hover:text-tangled-gold-600">Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Biner Konversi -->
+        <div class="project-card group rounded-3xl overflow-hidden border border-tangled-gold-200 bg-white hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/15 hover:-translate-y-2 transition-all duration-300" data-category="biner">
+          <div class="h-48 bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute -right-4 -bottom-4 w-28 h-28 text-white/10 group-hover:text-white/20 transition-all group-hover:rotate-45 duration-700 fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <div class="text-center text-white z-10 space-y-2">
+              <i data-lucide="binary" class="w-12 h-12 mx-auto stroke-1 text-tangled-gold-300 group-hover:scale-110 transition-transform"></i>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full border border-white/20">Bobot 8-Bit Oktet</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs font-bold text-tangled-purple-700 mb-2">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+                Matematika Komputer
+              </span>
+              <span class="text-slate-400">Kelas 10</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-tangled-purple-700 transition-colors">
+              Konversi Bilangan Biner & Representasi Oktet IP
+            </h3>
+            <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
+              Menghitung konversi bilangan desimal (0-255) ke biner 8-bit (bobot 128, 64, 32, 16, 8, 4, 2, 1), membuktikan representasi biner alamat IP seperti 192.168.1.1.
+            </p>
+            <div class="mt-4 pt-4 border-t border-tangled-gold-200/70 flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-500">Akurasi: 100% Terverifikasi</span>
+              <span class="font-bold text-tangled-purple-800 flex items-center gap-1 group-hover:text-tangled-gold-600">Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Subnetting /24 s/d /28 -->
+        <div class="project-card group rounded-3xl overflow-hidden border border-tangled-gold-200 bg-white hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/15 hover:-translate-y-2 transition-all duration-300" data-category="subnetting">
+          <div class="h-48 bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute -right-4 -bottom-4 w-28 h-28 text-white/10 group-hover:text-white/20 transition-all group-hover:rotate-45 duration-700 fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <div class="text-center text-white z-10 space-y-2">
+              <i data-lucide="network" class="w-12 h-12 mx-auto stroke-1 text-tangled-gold-300 group-hover:scale-110 transition-transform"></i>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full border border-white/20">Prefix /24 s/d /28</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs font-bold text-tangled-purple-700 mb-2">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+                Perhitungan Jaringan
+              </span>
+              <span class="text-slate-400">Kelas 10</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-tangled-purple-700 transition-colors">
+              Kalkulasi Subnetting IPv4 Kelas C
+            </h3>
+            <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
+              Menghitung subnet mask, menentukan rumus 2^x untuk jumlah subnet dan (2^y - 2) untuk usable host, serta menentukan batas Network ID dan Broadcast ID.
+            </p>
+            <div class="mt-4 pt-4 border-t border-tangled-gold-200/70 flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-500">Tabel Subnet Lengkap</span>
+              <span class="font-bold text-tangled-purple-800 flex items-center gap-1 group-hover:text-tangled-gold-600">Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Subnetting Lab /26 -->
+        <div class="project-card group rounded-3xl overflow-hidden border border-tangled-gold-200 bg-white hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/15 hover:-translate-y-2 transition-all duration-300" data-category="subnetting">
+          <div class="h-48 bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute -right-4 -bottom-4 w-28 h-28 text-white/10 group-hover:text-white/20 transition-all group-hover:rotate-45 duration-700 fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <div class="text-center text-white z-10 space-y-2">
+              <i data-lucide="layout-grid" class="w-12 h-12 mx-auto stroke-1 text-tangled-gold-300 group-hover:scale-110 transition-transform"></i>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full border border-white/20">Alokasi Lab /26</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs font-bold text-tangled-purple-700 mb-2">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+                Studi Kasus Lab
+              </span>
+              <span class="text-slate-400">Kelas 10</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-tangled-purple-700 transition-colors">
+              Alokasi IP Address Laboratorium dengan Subnetting /26
+            </h3>
+            <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
+              Membagi blok IP 192.168.10.0/24 menjadi 4 subnet terpisah dengan netmask 255.255.255.192 (/26) untuk 4 ruang lab, masing-masing menampung hingga 62 host.
+            </p>
+            <div class="mt-4 pt-4 border-t border-tangled-gold-200/70 flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-500">Hasil: 4 Subnet 62 Host</span>
+              <span class="font-bold text-tangled-purple-800 flex items-center gap-1 group-hover:text-tangled-gold-600">Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: Logika Operasi AND Biner -->
+        <div class="project-card group rounded-3xl overflow-hidden border border-tangled-gold-200 bg-white hover:border-tangled-gold-400 hover:shadow-xl hover:shadow-purple-900/15 hover:-translate-y-2 transition-all duration-300" data-category="biner">
+          <div class="h-48 bg-gradient-to-tr from-tangled-purple-800 via-tangled-purple-600 to-tangled-gold-500 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+            <div class="absolute -right-4 -bottom-4 w-28 h-28 text-white/10 group-hover:text-white/20 transition-all group-hover:rotate-45 duration-700 fill-current">
+              <svg class="w-full h-full"><use href="#corona-sun-crest"/></svg>
+            </div>
+            <div class="text-center text-white z-10 space-y-2">
+              <i data-lucide="cpu" class="w-12 h-12 mx-auto stroke-1 text-tangled-gold-300 group-hover:scale-110 transition-transform"></i>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase bg-white/20 backdrop-blur-sm px-3.5 py-1 rounded-full border border-white/20">Operasi Logika AND</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between text-xs font-bold text-tangled-purple-700 mb-2">
+              <span class="flex items-center gap-1">
+                <svg class="w-3 h-3 text-tangled-gold-500 fill-current"><use href="#corona-sun-crest"/></svg>
+                Analisis Biner
+              </span>
+              <span class="text-slate-400">Kelas 10</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-tangled-purple-700 transition-colors">
+              Analisis Operasi Biner AND untuk Menemukan Network ID
+            </h3>
+            <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
+              Membuktikan secara matematis bagaimana komputer dan switch membandingkan biner IP Address dengan biner Subnet Mask melalui perkalian bit logika AND (1 AND 1 = 1).
+            </p>
+            <div class="mt-4 pt-4 border-t border-tangled-gold-200/70 flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-500">Logika Bit Terverifikasi</span>
+              <span class="font-bold text-tangled-purple-800 flex items-center gap-1 group-hover:text-tangled-gold-600">Detail <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SECTION: TKJ LAB SIMULATOR (Tangled Night Sky Theme) -->
+  <section id="terminal" class="py-20 bg-tangled-night-950 text-slate-100 relative overflow-hidden">
+    <!-- Golden Lantern Ambient Sky Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-tangled-purple-600/20 via-tangled-gold-500/20 to-transparent blur-[140px] pointer-events-none rounded-full"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-tangled-gold-300 bg-tangled-purple-900/80 px-4 py-1.5 rounded-full border border-tangled-gold-400/40 inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-tangled-gold-400 fill-current"><use href="#corona-sun-crest"/></svg>
+          Fitur Interaktif
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight font-royal">
+          ⚡ Mini Terminal Lab TKJ: Biner, Crimping, & Subnetting
+        </h2>
+        <p class="text-tangled-gold-100/70 mt-2 text-sm max-w-xl mx-auto">
+          Coba simulasi interaktif perhitungan biner, panduan warna crimping, kalkulator subnetting, atau panggil karakter Tangled favoritmu!
+        </p>
+      </div>
+
+      <!-- Terminal Window with Tangled Night Sky Glassmorphism -->
+      <div class="rounded-3xl bg-[#150921]/95 border border-tangled-gold-400/35 shadow-2xl shadow-purple-950/60 overflow-hidden backdrop-blur font-mono text-sm">
+        
+        <!-- Window Bar -->
+        <div class="px-5 py-4 bg-[#0F0519]/90 border-b border-tangled-gold-400/25 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-slate-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-tangled-gold-400 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-tangled-purple-500 inline-block"></span>
+            <span class="ml-2 text-xs text-tangled-gold-200/80 font-sans font-medium flex items-center gap-1">
+              renataa@tkj-lab10:~$
+            </span>
+          </div>
+          <span class="text-[11px] text-emerald-400 flex items-center gap-1">
+            <span>🦎</span> Pascal: Online
+          </span>
+        </div>
+
+        <!-- Terminal Output -->
+        <div id="terminal-screen" class="p-6 h-64 overflow-y-auto space-y-2 text-xs sm:text-sm leading-relaxed text-slate-200">
+          <p class="text-tangled-gold-400 font-bold">✨ Selamat datang di Terminal Portofolio Renataa (Kelas 10 SMK TKJ Telkom)!</p>
+          <p class="text-tangled-purple-200">Ketik <span class="text-tangled-gold-300 font-bold">'help'</span> untuk panduan, atau klik tombol cepat di bawah.</p>
+          <div class="border-b border-tangled-gold-400/20 my-2"></div>
+        </div>
+
+        <!-- Terminal Input Line -->
+        <div class="px-5 py-3 bg-[#0F0519]/75 border-t border-tangled-gold-400/20 flex items-center gap-2">
+          <span class="text-tangled-gold-400 font-bold font-mono">➜</span>
+          <span class="text-tangled-purple-300 font-bold font-mono">~</span>
+          <input 
+            type="text" 
+            id="term-input" 
+            placeholder="Ketik: 'biner 192', 'crimping straight', 'subnet /26', 'flynn', 'pascal'..."
+            class="flex-1 bg-transparent border-none text-[#FFF9E6] placeholder-tangled-gold-200/40 focus:outline-none font-mono text-xs sm:text-sm"
+            autocomplete="off"
+          />
+          <button id="term-submit" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-tangled-gold-400 to-tangled-gold-500 hover:from-tangled-gold-500 hover:to-tangled-gold-600 text-tangled-purple-950 font-sans text-xs font-bold transition-all shadow-md shadow-amber-500/30">
+            Kirim
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Quick Command Pills -->
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
+        <span class="text-tangled-gold-200/70 font-semibold mr-1">Tombol Cepat:</span>
+        <button onclick="runCommand('biner 192')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-tangled-gold-400 hover:text-tangled-purple-950 text-tangled-gold-200 font-mono transition-colors border border-tangled-gold-400/30">biner 192</button>
+        <button onclick="runCommand('crimping straight')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-tangled-gold-400 hover:text-tangled-purple-950 text-tangled-gold-200 font-mono transition-colors border border-tangled-gold-400/30">crimping straight</button>
+        <button onclick="runCommand('subnet /26')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-tangled-gold-400 hover:text-tangled-purple-950 text-tangled-gold-200 font-mono transition-colors border border-tangled-gold-400/30">subnet /26</button>
+        <button onclick="runCommand('rapunzel')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-tangled-gold-400 hover:text-tangled-purple-950 text-tangled-gold-200 font-mono transition-colors border border-tangled-gold-400/30">☀️ rapunzel</button>
+        <button onclick="runCommand('flynn')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-cyan-500 hover:text-white text-cyan-200 font-mono transition-colors border border-cyan-400/30">💼 flynn</button>
+        <button onclick="runCommand('maximus')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-amber-500 hover:text-white text-amber-200 font-mono transition-colors border border-amber-400/30">🐴 maximus</button>
+        <button onclick="runCommand('pascal')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-emerald-500 hover:text-white text-emerald-200 font-mono transition-colors border border-emerald-400/30">🦎 pascal</button>
+        <button onclick="runCommand('whoami')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-tangled-gold-400 hover:text-tangled-purple-950 text-tangled-gold-200 font-mono transition-colors border border-tangled-gold-400/30">whoami</button>
+        <button onclick="runCommand('clear')" class="px-3 py-1.5 rounded-xl bg-tangled-purple-950/70 hover:bg-tangled-gold-400 hover:text-tangled-purple-950 text-tangled-gold-200 font-mono transition-colors border border-tangled-gold-400/30">clear</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KONTAK SECTION -->
+  <section id="kontak" class="py-20 bg-[#FCF9F3] relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Kingdom Banner Styled Card -->
+      <div class="bg-gradient-to-br from-tangled-night-950 via-tangled-purple-950 to-tangled-night-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden border-2 border-tangled-gold-400/40">
+        
+        <!-- Abstract Lantern Circles -->
+        <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-tangled-gold-400/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-tangled-purple-600/25 blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          
+          <!-- Left Info -->
+          <div class="lg:col-span-7 space-y-4">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-tangled-gold-200 text-xs font-bold uppercase tracking-wider backdrop-blur-sm border border-tangled-gold-400/30">
+              <i data-lucide="message-circle" class="w-3.5 h-3.5 text-tangled-gold-400"></i> Kontak Santai
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight font-royal">
+              Mau Ngobrol atau Diskusi Jaringan?
+            </h2>
+            <p class="text-tangled-gold-100/90 text-sm sm:text-base leading-relaxed">
+              Aku selalu terbuka buat kenalan, diskusi seputar tugas lab TKJ, tips crimping kabel, atau sekadar sharing pengalaman belajar IT. Yuk sapa aku di Instagram!
+            </p>
+
+            <div class="pt-4 flex flex-col sm:flex-row gap-3">
+              <!-- Instagram Direct Message Button -->
+              <a href="https://instagram.com/r4en.ata" target="_blank" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-tangled-gold-300 via-tangled-gold-400 to-tangled-gold-500 hover:from-tangled-gold-400 hover:to-tangled-gold-600 text-tangled-purple-950 font-extrabold text-sm shadow-lg shadow-amber-400/25 hover:-translate-y-0.5 transition-all">
+                <i data-lucide="instagram" class="w-5 h-5 text-tangled-purple-900"></i>
+                <span>Kirim DM Instagram @r4en.ata</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Quick Form / Info Box -->
+          <div class="lg:col-span-5 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-tangled-gold-400/25 space-y-4 text-xs sm:text-sm">
+            <h4 class="font-bold text-white text-base flex items-center gap-2 font-royal">
+              <i data-lucide="user-check" class="w-4 h-4 text-tangled-gold-400"></i> Profil Singkat
+            </h4>
+            
+            <div class="space-y-3 text-tangled-gold-100">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-tangled-gold-400/20 flex items-center justify-center text-tangled-gold-400">
+                  <i data-lucide="school" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-[11px] text-tangled-gold-200/70">Sekolah</p>
+                  <p class="font-semibold text-white">SMK Telkom Malang</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-tangled-gold-400/20 flex items-center justify-center text-tangled-gold-400">
+                  <i data-lucide="cpu" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-[11px] text-tangled-gold-200/70">Tingkat & Jurusan</p>
+                  <p class="font-semibold text-white">Kelas 10 • Teknik Komputer & Jaringan (TKJ)</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-tangled-gold-400/20 flex items-center justify-center text-tangled-gold-400">
+                  <i data-lucide="instagram" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-[11px] text-tangled-gold-200/70">Akun Instagram</p>
+                  <a href="https://instagram.com/r4en.ata" target="_blank" class="font-semibold text-white hover:text-tangled-gold-300 transition-colors flex items-center gap-1.5 underline decoration-tangled-gold-400/50 hover:decoration-tangled-gold-300">
+                    @r4en.ata
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-tangled-gold-200/70 pt-2 border-t border-tangled-gold-400/20 italic">
+              *Feel free buat DM di Instagram ya, pasti kubalas waktu senggang!
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-tangled-night-950 text-slate-400 text-xs border-t border-tangled-gold-400/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-tangled-gold-400 to-tangled-gold-500 flex items-center justify-center text-tangled-purple-950">
+          <svg class="w-4 h-4 fill-current"><use href="#corona-sun-crest"/></svg>
+        </div>
+        <span class="font-bold text-white">Renataa • SMK Telkom Malang (Kelas 10 TKJ)</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com/r4en.ata" target="_blank" class="hover:text-tangled-gold-300 transition-colors flex items-center gap-1.5 font-medium">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          <span>@r4en.ata</span>
+        </a>
+        <span class="text-slate-700">|</span>
+        <p class="text-tangled-gold-200/60">
+          Dibuat dengan ❤️ & Kehangatan Dunia Tangled
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Navbar scroll background change
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 30) {
+        navbar.classList.add('bg-[#FFFDF7]/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-tangled-gold-300/80');
+      } else {
+        navbar.classList.remove('bg-[#FFFDF7]/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-tangled-gold-300/80');
+      }
+    });
+
+    // Project Category Filtering (All, Crimping, Subnetting, Biner)
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-gradient-to-r', 'from-tangled-gold-400', 'to-tangled-gold-500', 'text-tangled-purple-950', 'shadow-amber-400/30', 'border-amber-300');
+          b.classList.add('bg-white', 'text-slate-700', 'border', 'border-tangled-gold-200');
+        });
+        btn.classList.add('bg-gradient-to-r', 'from-tangled-gold-400', 'to-tangled-gold-500', 'text-tangled-purple-950', 'shadow-amber-400/30', 'border-amber-300');
+        btn.classList.remove('bg-white', 'text-slate-700', 'border', 'border-tangled-gold-200');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // INTERACTIVE TERMINAL SIMULATOR: BINER, CRIMPING, SUBNETTING, TANGLED CHARACTERS
+    const terminalScreen = document.getElementById('terminal-screen');
+    const termInput = document.getElementById('term-input');
+    const termSubmit = document.getElementById('term-submit');
+
+    function appendTerminalOutput(cmd, outputHtml) {
+      const line = document.createElement('div');
+      line.className = 'space-y-1';
+      line.innerHTML = `
+        <div class="flex items-center gap-2 text-slate-400">
+          <span class="text-tangled-gold-400 font-bold">➜</span>
+          <span class="text-tangled-purple-300 font-bold">~</span>
+          <span class="text-white font-bold">${escapeHtml(cmd)}</span>
+        </div>
+        <div class="text-slate-200 pl-5">${outputHtml}</div>
+      `;
+      terminalScreen.appendChild(line);
+      terminalScreen.scrollTop = terminalScreen.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.innerText = text;
+      return div.innerHTML;
+    }
+
+    function runCommand(rawCmd) {
+      const fullCmd = rawCmd.trim();
+      const lowerCmd = fullCmd.toLowerCase();
+      if (!lowerCmd) return;
+
+      if (lowerCmd === 'clear') {
+        terminalScreen.innerHTML = `
+          <p class="text-tangled-gold-400 font-bold">Layar terminal dibersihkan.</p>
+          <p class="text-slate-400">Ketik <span class="text-tangled-gold-300 font-bold">'help'</span> untuk bantuan.</p>
+          <div class="border-b border-tangled-gold-400/20 my-2"></div>
+        `;
+        return;
+      }
+
+      let response = '';
+
+      // Check if command is biner [number]
+      if (lowerCmd.startsWith('biner')) {
+        const parts = lowerCmd.split(' ');
+        const num = parseInt(parts[1], 10);
+        if (isNaN(num) || num < 0 || num > 255) {
+          response = `
+            <p class="text-tangled-gold-400 font-bold">Format: biner [angka 0 - 255]</p>
+            <p class="text-slate-300">Contoh: <code class="text-amber-200">biner 192</code> atau <code class="text-amber-200">biner 255</code></p>
+          `;
+        } else {
+          const binStr = num.toString(2).padStart(8, '0');
+          const weights = [128, 64, 32, 16, 8, 4, 2, 1];
+          const breakdown = weights.filter((w, idx) => binStr[idx] === '1').join(' + ') || '0';
+          response = `
+            <div class="p-2.5 rounded-xl bg-purple-950/60 border border-tangled-gold-400/30">
+              <p class="text-tangled-gold-300 font-bold text-sm">🔢 Konversi Biner: Desimal ${num}</p>
+              <p class="text-white text-base font-mono font-black tracking-widest mt-1">
+                ${binStr}
+              </p>
+              <p class="text-tangled-purple-200 text-xs mt-1">Bobot bit aktif: ${breakdown} = ${num}</p>
+              <p class="text-slate-400 text-[11px] mt-0.5">8-bit Oktet: [128][64][32][16][8][4][2][1]</p>
+            </div>
+          `;
+        }
+      }
+      // Check if command is crimping [straight|cross]
+      else if (lowerCmd.startsWith('crimping')) {
+        if (lowerCmd.includes('cross')) {
+          response = `
+            <div class="p-2.5 rounded-xl bg-purple-950/60 border border-tangled-gold-400/30 space-y-2">
+              <p class="text-tangled-gold-300 font-bold">🔌 Urutan Warna Kabel LAN Cross-Over (PC ke PC):</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <div class="p-2 rounded bg-black/40 border border-purple-800">
+                  <p class="font-bold text-amber-300 mb-1">Ujung A (Standar T568A):</p>
+                  <p class="text-slate-300">1. Putih-Hijau | 2. Hijau</p>
+                  <p class="text-slate-300">3. Putih-Orange | 4. Biru</p>
+                  <p class="text-slate-300">5. Putih-Biru | 6. Orange</p>
+                  <p class="text-slate-300">7. Putih-Coklat | 8. Coklat</p>
+                </div>
+                <div class="p-2 rounded bg-black/40 border border-purple-800">
+                  <p class="font-bold text-amber-300 mb-1">Ujung B (Standar T568B):</p>
+                  <p class="text-slate-300">1. Putih-Orange | 2. Orange</p>
+                  <p class="text-slate-300">3. Putih-Hijau | 4. Biru</p>
+                  <p class="text-slate-300">5. Putih-Biru | 6. Hijau</p>
+                  <p class="text-slate-300">7. Putih-Coklat | 8. Coklat</p>
+                </div>
+              </div>
+              <p class="text-emerald-400 text-xs">✓ Status: Cocok untuk koneksi langsung antar 2 PC tanpa switch!</p>
+            </div>
+          `;
+        } else {
+          response = `
+            <div class="p-2.5 rounded-xl bg-purple-950/60 border border-tangled-gold-400/30 space-y-1.5">
+              <p class="text-tangled-gold-300 font-bold">🔌 Urutan Warna Kabel LAN Straight-Through (T568B):</p>
+              <p class="text-slate-300 text-xs">Kedua ujung kabel menggunakan urutan standar T568B yang sama:</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-1 text-xs font-mono">
+                <span class="p-1 rounded bg-amber-950/80 text-amber-200">1. Putih-Orange</span>
+                <span class="p-1 rounded bg-orange-950/80 text-orange-300">2. Orange</span>
+                <span class="p-1 rounded bg-emerald-950/80 text-emerald-200">3. Putih-Hijau</span>
+                <span class="p-1 rounded bg-blue-950/80 text-blue-300">4. Biru</span>
+                <span class="p-1 rounded bg-blue-950/80 text-blue-200">5. Putih-Biru</span>
+                <span class="p-1 rounded bg-emerald-950/80 text-emerald-300">6. Hijau</span>
+                <span class="p-1 rounded bg-amber-950/80 text-amber-100">7. Putih-Coklat</span>
+                <span class="p-1 rounded bg-stone-900 text-amber-400">8. Coklat</span>
+              </div>
+              <p class="text-emerald-400 text-xs">✓ Status: Hasil tes LAN Tester pin 1 s/d 8 menyala berurutan!</p>
+            </div>
+          `;
+        }
+      }
+      // Check if command is subnet [prefix]
+      else if (lowerCmd.startsWith('subnet')) {
+        const parts = lowerCmd.split(' ');
+        const prefixStr = parts[1] ? parts[1].replace('/', '') : '24';
+        const prefix = parseInt(prefixStr, 10);
+
+        if (isNaN(prefix) || prefix < 24 || prefix > 30) {
+          response = `
+            <p class="text-tangled-gold-400 font-bold">Format: subnet [prefix /24 s/d /30]</p>
+            <p class="text-slate-300">Contoh: <code class="text-amber-200">subnet /26</code> atau <code class="text-amber-200">subnet /27</code></p>
+          `;
+        } else {
+          const hostBits = 32 - prefix;
+          const subnetBits = prefix - 24;
+          const totalSubnets = Math.pow(2, subnetBits);
+          const totalIps = Math.pow(2, hostBits);
+          const usableHosts = totalIps - 2;
+          const lastOctetMask = 256 - totalIps;
+
+          response = `
+            <div class="p-2.5 rounded-xl bg-purple-950/60 border border-tangled-gold-400/30 space-y-1">
+              <p class="text-tangled-gold-300 font-bold text-sm">🌐 Kalkulasi Subnetting IPv4 Kelas C: /${prefix}</p>
+              <p class="text-white text-xs"><strong class="text-amber-200">Subnet Mask :</strong> 255.255.255.${lastOctetMask}</p>
+              <p class="text-white text-xs"><strong class="text-amber-200">Jumlah Subnet :</strong> ${totalSubnets} subnet (2^${subnetBits})</p>
+              <p class="text-white text-xs"><strong class="text-amber-200">Total IP per Subnet :</strong> ${totalIps} alamat (kelipatan ${totalIps})</p>
+              <p class="text-white text-xs"><strong class="text-amber-200">Host Valid (Usable IP) :</strong> ${usableHosts} host per subnet (2^${hostBits} - 2)</p>
+              <p class="text-tangled-purple-200 text-xs mt-1">Blok 1 (192.168.1.0): Network: .0 | Range: .1 s/d .${totalIps - 2} | Broadcast: .${totalIps - 1}</p>
+            </div>
+          `;
+        }
+      }
+      // Tangled Characters Easter Eggs
+      else if (lowerCmd === 'rapunzel') {
+        response = `
+          <div class="p-3 rounded-xl bg-gradient-to-r from-purple-900/80 via-amber-900/60 to-purple-900/80 border border-tangled-gold-400/40 text-center space-y-1.5">
+            <p class="text-lg">☀️ 🌸 🍳</p>
+            <p class="text-tangled-gold-300 font-royal font-bold text-sm">"At last I see the light!"</p>
+            <p class="text-white text-xs italic">"Venture outside your comfort zone, the reward is worth it."</p>
+            <p class="text-tangled-purple-200 text-[11px] pt-1 border-t border-tangled-gold-400/20">
+              Pesan dari Rapunzel: Semangat terus ya Renataa belajarnya di SMK Telkom Malang!
+            </p>
+          </div>
+        `;
+      }
+      else if (lowerCmd === 'flynn' || lowerCmd === 'eugene') {
+        response = `
+          <div class="p-3 rounded-xl bg-gradient-to-r from-cyan-950/90 to-teal-950/90 border border-cyan-400/40 space-y-1.5">
+            <div class="flex items-center gap-2 text-cyan-300 font-bold">
+              <span>💼</span> Flynn Rider (Eugene Fitzherbert):
+            </div>
+            <p class="text-white text-xs">"Here comes the smolder... 😎"</p>
+            <p class="text-cyan-200 text-xs">Mau kirim paket data ke subnet lain? Tenang, aku tahu semua rute pintas dan jalan rahasia!</p>
+          </div>
+        `;
+      }
+      else if (lowerCmd === 'pascal') {
+        response = `
+          <div class="p-3 rounded-xl bg-gradient-to-r from-emerald-950/90 to-green-950/90 border border-emerald-400/40 space-y-1.5">
+            <div class="flex items-center gap-2 text-emerald-300 font-bold">
+              <span>🦎</span> Pascal si Bunglon:
+            </div>
+            <p class="text-white text-xs">*Pascal mengangguk mantap dan berubah warna jadi hijau neon!*</p>
+            <p class="text-emerald-200 text-xs">✓ Status QC Kabel UTP: Pin 1 sampai 8 nyala hijau berurutan tanpa putus!</p>
+          </div>
+        `;
+      }
+      else if (lowerCmd === 'maximus') {
+        response = `
+          <div class="p-3 rounded-xl bg-gradient-to-r from-amber-950/90 to-stone-900 border border-amber-400/40 space-y-1.5">
+            <div class="flex items-center gap-2 text-amber-300 font-bold">
+              <span>🐴</span> Maximus:
+            </div>
+            <p class="text-white text-xs">*Maximus mendengus tegas sambil mengentakkan kuku kakinya ke lantai lab!*</p>
+            <p class="text-amber-200 text-xs">"Disiplin urutan kabel: Putih-Orange, Orange, Putih-Hijau, Biru, Putih-Biru, Hijau, Putih-Coklat, Coklat! Jangan ada yang ketuker!"</p>
+          </div>
+        `;
+      }
+      else if (lowerCmd === 'gothel') {
+        response = `
+          <div class="p-3 rounded-xl bg-gradient-to-r from-rose-950/90 to-red-950/90 border border-rose-400/40 space-y-1.5">
+            <div class="flex items-center gap-2 text-rose-300 font-bold">
+              <span>🥀</span> Mother Gothel:
+            </div>
+            <p class="text-rose-200 text-xs italic">"Mother knows best... Jangan coba-coba salah subnet mask!"</p>
+            <p class="text-slate-300 text-xs">Tapi Renataa gak takut, karena sudah paham rumus 2^x dan 2^y - 2!</p>
+          </div>
+        `;
+      }
+      else if (lowerCmd === 'duckling' || lowerCmd === 'hookhand') {
+        response = `
+          <div class="p-3 rounded-xl bg-gradient-to-r from-purple-950/90 to-pink-950/90 border border-purple-400/40 space-y-1.5">
+            <div class="flex items-center gap-2 text-purple-300 font-bold">
+              <span>🧁</span> Snuggly Duckling Crew:
+            </div>
+            <p class="text-white text-xs">"I've got a dream! I've got a dream!" 🎶</p>
+            <p class="text-purple-200 text-xs">Hook Hand main piano, Attila bagi-bagi cupcake di lab, mendukung Renataa jadi anak TKJ berprestasi!</p>
+          </div>
+        `;
+      }
+      else {
+        switch (lowerCmd) {
+          case 'help':
+            response = `
+              <div class="text-tangled-gold-400 font-bold mb-1">Daftar Perintah Laboratorium TKJ 10:</div>
+              <ul class="space-y-1 text-slate-300">
+                <li><strong class="text-tangled-gold-300">biner [0-255]</strong> : Konversi desimal ke biner 8-bit & bobot bit</li>
+                <li><strong class="text-tangled-gold-300">crimping straight</strong> : Urutan warna standar kabel T568B</li>
+                <li><strong class="text-tangled-gold-300">crimping cross</strong> : Urutan warna kabel cross T568A ke T568B</li>
+                <li><strong class="text-tangled-gold-300">subnet [/24 - /30]</strong> : Kalkulator subnet mask, host, & network</li>
+                <li><strong class="text-cyan-300">flynn</strong> / <strong class="text-emerald-300">pascal</strong> / <strong class="text-amber-300">maximus</strong> / <strong class="text-rose-300">gothel</strong> : Panggil karakter Tangled</li>
+                <li><strong class="text-tangled-gold-300">rapunzel</strong> : Easter egg spesial Rapunzel</li>
+                <li><strong class="text-tangled-gold-300">whoami</strong> : Info singkat profil Renataa</li>
+                <li><strong class="text-tangled-gold-300">skills</strong> : Rincian 3 kompetensi utama (Biner, Crimping, Subnetting)</li>
+                <li><strong class="text-tangled-gold-300">clear</strong> : Membersihkan layar terminal</li>
+              </ul>
+            `;
+            break;
+
+          case 'whoami':
+            response = `
+              <p><span class="text-tangled-gold-400 font-bold">Nama:</span> Renataa</p>
+              <p><span class="text-tangled-gold-400 font-bold">Sekolah:</span> SMK Telkom Malang</p>
+              <p><span class="text-tangled-gold-400 font-bold">Tingkat & Jurusan:</span> Kelas 10 • Teknik Komputer dan Jaringan (TKJ)</p>
+              <p><span class="text-tangled-gold-400 font-bold">Materi yang Dikuasai:</span> Sistem Bilangan Biner, Crimping Kabel UTP, & Subnetting IPv4</p>
+              <p><span class="text-tangled-gold-400 font-bold">Instagram:</span> <a href="https://instagram.com/r4en.ata" target="_blank" class="text-tangled-gold-300 underline font-bold">@r4en.ata</a></p>
+              <p><span class="text-tangled-gold-400 font-bold">Motto:</span> "Gleam and glow, let your power shine!"</p>
+            `;
+            break;
+
+          case 'skills':
+            response = `
+              <p class="text-tangled-gold-300 font-bold">3 Materi Utama Kelas 10 TKJ yang Sudah Dikuasai:</p>
+              <p class="text-tangled-purple-200">🔢 <strong>1. Sistem Biner:</strong> Konversi desimal-biner, tabel bobot 8-bit (128..1), format oktet IP</p>
+              <p class="text-tangled-purple-200">🔌 <strong>2. Crimping Kabel UTP:</strong> Standar T568A & T568B, straight & cross, pengujian LAN tester</p>
+              <p class="text-tangled-purple-200">🌐 <strong>3. Subnetting IPv4:</strong> Prefix CIDR /24 s/d /30, netmask, network ID, usable host, broadcast</p>
+            `;
+            break;
+
+          default:
+            response = `<p class="text-tangled-gold-400">Perintah '${escapeHtml(fullCmd)}' tidak dikenali. Ketik <span class="font-bold underline">'help'</span> atau klik tombol cepat di bawah.</p>`;
+            break;
+        }
+      }
+
+      appendTerminalOutput(rawCmd, response);
+    }
+
+    termSubmit.addEventListener('click', () => {
+      const val = termInput.value;
+      if (val) {
+        runCommand(val);
+        termInput.value = '';
+      }
+    });
+
+    termInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = termInput.value;
+        if (val) {
+          runCommand(val);
+          termInput.value = '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
